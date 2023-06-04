@@ -6,6 +6,8 @@ import os
 import nltk
 import torch
 
+from pilot.configs.config import Config
+
 ROOT_PATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 MODEL_PATH = os.path.join(ROOT_PATH, "models")
 PILOT_PATH = os.path.join(ROOT_PATH, "pilot")
@@ -14,13 +16,15 @@ LOGDIR = os.path.join(ROOT_PATH, "logs")
 DATASETS_DIR = os.path.join(PILOT_PATH, "datasets")
 DATA_DIR = os.path.join(PILOT_PATH, "data")
 
+CFG = Config()
+
 nltk.data.path = [os.path.join(PILOT_PATH, "nltk_data")] + nltk.data.path
 
 DEVICE = (
     "cuda"
     if torch.cuda.is_available()
     else "mps"
-    if torch.backends.mps.is_available()
+    if torch.backends.mps.is_available() and CFG.ISLOAD_8BIT
     else "cpu"
 )
 LLM_MODEL_CONFIG = {

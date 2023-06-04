@@ -35,7 +35,7 @@ class ModelWorker:
 
         self.ml = ModelLoader(model_path=model_path)
         self.model, self.tokenizer = self.ml.loader(
-            num_gpus, load_8bit=ISLOAD_8BIT, debug=ISDEBUG
+            num_gpus, load_8bit=CFG.ISLOAD_8BIT, debug=CFG.LLM_MODEL_IS_DEBUG
         )
 
         if not isinstance(self.model, str):

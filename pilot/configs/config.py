@@ -151,6 +151,10 @@ class Config(metaclass=Singleton):
         ### SUMMARY_CONFIG Configuration
         self.SUMMARY_CONFIG = os.getenv("SUMMARY_CONFIG", "VECTOR")
 
+        self.LLM_MODEL_IS_DEBUG = (
+            os.getenv("LLM_MODEL_IS_DEBUG", "False") == "True"
+        )
+
     def set_debug_mode(self, value: bool) -> None:
         """Set the debug mode value"""
         self.debug_mode = value
